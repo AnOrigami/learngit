@@ -193,3 +193,4 @@ Git 支持两种标签：轻量标签（lightweight）与附注标签（annotate
 
 git tag获取标签
 git show <tag>:显示标签信息
+
