@@ -87,3 +87,5 @@ git log --pretty=format:"%h - %an, %ar : %s":定制显示格式
 ### git commit --amend
 
 撤销操作 --amend
+
+"git restore --staged <file>...":两个文件已经add，但是只需要一个文件add，可以使用这个命令restore一个文件
