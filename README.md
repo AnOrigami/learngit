@@ -177,6 +177,17 @@ Git 支持两种标签：轻量标签（lightweight）与附注标签（annotate
 - git push origin <tagname>：推送指定的这个tag
 - git push origin --tags：这将会把所有不在远程仓库服务器上的标签全部传送到那里。
 
+- **删除标签**
+- git tag -d <tagname>
+- 上述命令并不会从任何远程仓库中移除这个标签，你必须用 git push <remote> :refs/tags/<tagname> 来更新你的远程仓库
+- git push <remote-shortname> :refs/tags/<tagname>
+- git push origin --delete <tagname>
+
+- **签出标签**
+- git checkout <tag-name>
+- 这会使你的仓库处于“分离头指针（detached HEAD）”的状态
+- **非必须 禁止使用此命令**
+
 ### git show
 
 git tag获取标签
