@@ -1,4 +1,6 @@
-## learngit
+# learn git
+
+## git 基础
 
 ### git init
 
@@ -126,3 +128,56 @@ git push <remote> <branch>
 ### git remote show
 
 git remote show <remote>
+![img_1.png](img_1.png)
+
+这个命令列出了当你在特定的分支上执行 git push 会自动地推送到哪一个远程分支。
+它也同样地列出了哪些远程分支不在你的本地，哪些远程分支已经从服务器上移除了，
+还有当你执行 git pull 时哪些本地分支可以与它跟踪的远程分支自动合并。
+
+### remote rename/remove
+
+git remote rename <old shortname> <new shortname>
+这同样也会修改你所有远程跟踪的分支名字。
+
+git remote remove shortname/git remote rm shortname
+移除远程仓库
+你使用这种方式删除了一个远程仓库，那么所有和这个远程仓库相关的远程跟踪分支以及配置信息也会一起被删除。
+
+### git tag
+
+列出标签
+这个命令以字母顺序列出标签，但是它们显示的顺序并不重要。
+你也可以按照特定的模式查找标签： git tag -l "v1.8.5*"（想要匹配必须加-l或者--list）
+人们会使用这个功能来标记发布结点（ v1.0 、 v2.0 等等）
+
+- git tag
+- git tag -l
+- git tag --list
+
+Git 支持两种标签：轻量标签（lightweight）与附注标签（annotated）。
+
+- **附注标签**
+- git tag -a v1.4 -m "my version 1.4"
+- -a指明为附注标签，标签为v1.4
+- -m指定注释信息，如果没有为附注标签指定一条信息，Git 会启动编辑器要求你输入信息。
+
+- **轻量标签**
+- git tag v1.4-lw
+- 不需要使用 -a、-s 或 -m 选项，只需要提供标签名字
+
+- **对之前的commit进行打tag**
+- git log --pretty=oneline:显示历史commit
+- git tag -a v1.2 9fceb02
+- -a进行打附注标签，标签为v1.2
+- 9fceb02为部分校验和
+
+- **共享标签**
+- git push不会将tag进行push到remote
+- 必须显示的push标签
+- git push origin <tagname>：推送指定的这个tag
+- git push origin --tags：这将会把所有不在远程仓库服务器上的标签全部传送到那里。
+
+### git show
+
+git tag获取标签
+git show <tag>:显示标签信息
