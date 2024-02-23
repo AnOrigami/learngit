@@ -89,3 +89,40 @@ git log --pretty=format:"%h - %an, %ar : %s":定制显示格式
 撤销操作 --amend
 
 "git restore --staged <file>...":两个文件已经add，但是只需要一个文件add，可以使用这个命令restore一个文件
+
+每次add或者commit或者modify之后，可以通过git statue查看状态，会显示如何撤销的操作
+
+### remote repository
+
+git remote:输出远程仓库的简写origin
+git remote -v:显示需要读写远程仓库使用的 Git 保存的简写与其对应的URL
+
+git remote add origin URL
+
+- 添加远程仓库
+- origin为short的具体值
+- URL要换成一个自己仓库的url
+- git fetch shortname:可以使用这个设置的shortname进行fetch
+
+git clone URL.git 会默认远程仓库的shortname为origin
+
+### git fetch <remote>
+
+- 从远程仓库中拉取所有你没有的数据
+- <remote>可以使用shortname或URL
+- 只会将数据下载到本地，并不会自动合并或者修改你当前的工作，后续需要手动合并进入你的工作
+
+### git pull
+
+- 如果你的当前分支设置了跟踪远程分支（阅读下一节和 Git 分支 了解更多信息）， 那么可以用 git pull 命令来自动抓取后合并该远程分支到当前分支。
+- 默认情况下，git clone 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支（或其它名字的默认分支）。
+- 运行 git pull 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。
+
+### git push
+
+git push <remote> <branch>
+<remote>为shortname
+
+### git remote show
+
+git remote show <remote>
