@@ -213,6 +213,7 @@ git checkout -b branch-name:创建新分支，并切换HEAD到这个新分支上
 ### 分支切换
 
 git log --oneline会显示所有分支
+git log --oneline --decorate --graph --all
 
 使用git checkout branch-name切换到指定分支
 同时更改HEAD指针的指向
