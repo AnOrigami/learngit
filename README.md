@@ -219,8 +219,42 @@ git log --oneline会显示所有分支
 
 ### 分支新建与合并
 
+背景介绍：master分支在v1.0版本（已发布，正在使用这个版本），基于当前master，创建了一个新分支iss22进行开发,
+此时开发完成或开发进行中，但是，对于发布的v1.0有错误，需要基于master主分支创建一个hotfix分支进行纠错，
+这个hotfix分支完成后为v1.1,现在主要是修复问题，当hotfix完成之后，将HEAD切换为master主分支，然后运行
+git merge hotfix,此时只有iss22的parent为v1.0
 
-new message is from feature/chapter3 branch
+- 当前HEAD为master
+- 为了进行开发git checkout -b iss22
+- 为了解决错误，git checkout master,git checkout -b hotfix
+- 错误解决完机型merge，git checkout master,git merge hotfix
+- merge hotfix to master
+- 此时应该删除hotfix分支，git branch -d hotfix
+- 问题已经解决完，切换回开发分支继续开发，git checkout iss33
+- iss分支开发完成，切换回主分支，git checkout master
+- 将iss22合并到master，git merge iss22
+- 此时，master和iss22有共同祖先v1.0，git回基于这个共同祖先和这两个分支的最后的commit快照进行三合一
+- iss22完成，git branch -d iss22
+
+#### 合并冲突
+
+两个分支对一个文件进行了操作，将产生合并冲突
+
+使用命令进行合并时遇到冲突git会暂停下来，等待手动解决冲突，可以使用git status 查看unmerged状态的文件
+
+所以，合并操作建议使用goland中的git合并（，使用图形化界面操作不知道是否还需要commit）
+
+### 分支管理
+
+git branch:显示所有分支
+git branch -v :查看每一个分支的最后commit
+git branch --merged : 显示已合并到当前分支的分支,这里显示的就可以删除掉了
+git branch --no-merged :当前分支为合并的分支
+
+### 分支开发工作流
+
+
+
 
 
 
