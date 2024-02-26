@@ -154,7 +154,7 @@ git remote remove shortname/git remote rm shortname
 - git tag -l
 - git tag --list
 
-Git 支持两种标签：轻量标签（lightweight）与附注标签（annotated）。
+Git 支持两种标签：轻量标签（lightweight）与附注标签（annotated）。(创建标签)
 
 - **附注标签**
 - git tag -a v1.4 -m "my version 1.4"
