@@ -177,6 +177,7 @@ Git 支持两种标签：轻量标签（lightweight）与附注标签（annotate
 - git push origin <tagname>：推送指定的这个tag
 - git push origin --tags：这将会把所有不在远程仓库服务器上的标签全部传送到那里。
 - 必须指定<remote-shortname>
+- 只会向远程push tag，不会push commit
 
 - **删除标签**
 - git tag -d <tagname>
@@ -193,4 +194,4 @@ Git 支持两种标签：轻量标签（lightweight）与附注标签（annotate
 
 git tag获取标签
 git show <tag>:显示标签信息
-
+git log 用于查看提交历史的概览，而 git show 则用于查看特定提交的详细信息和更改内容。
