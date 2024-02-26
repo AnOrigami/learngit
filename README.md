@@ -196,3 +196,46 @@ Git 支持两种标签：轻量标签（lightweight）与附注标签（annotate
 git tag获取标签
 git show <tag>:显示标签信息
 git log 用于查看提交历史的概览，而 git show 则用于查看特定提交的详细信息和更改内容。
+
+## git 分支管理
+
+### 分支创建
+
+git branch branch-name
+在当前commit的对象上创建一个指针
+只是创建一个新的分支，并不会改变HEAD指向
+HEAD是一个特殊指针，指向当前所在分支
+
+git log --oneline:会显示分支指向那个commit，和HEAD指向（包括remote和local的分支）
+
+git checkout -b branch-name:创建新分支，并切换HEAD到这个新分支上
+
+### 分支切换
+
+git log --oneline会显示所有分支
+
+使用git checkout branch-name切换到指定分支
+同时更改HEAD指针的指向
+
+### 分支新建与合并
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
