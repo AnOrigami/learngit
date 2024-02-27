@@ -116,6 +116,7 @@ git clone URL.git 会默认远程仓库的shortname为origin
 
 ### git pull
 
+- git pull <remote-short-name> <remote-branch>
 - 如果你的当前分支设置了跟踪远程分支（阅读下一节和 Git 分支 了解更多信息）， 那么可以用 git pull 命令来自动抓取后合并该远程分支到当前分支。
 - 默认情况下，git clone 命令会自动设置本地 master 分支跟踪克隆的远程仓库的 master 分支（或其它名字的默认分支）。
 - 运行 git pull 通常会从最初克隆的服务器上抓取数据并自动尝试合并到当前所在的分支。
@@ -124,6 +125,15 @@ git clone URL.git 会默认远程仓库的shortname为origin
 
 git push <remote> <branch>
 <remote>为shortname
+
+### fetch/pull
+
+**fetch:**从remote抓取数据到本地，但是不会更改当前工作区的内容，
+remote两次commit，本地一次commit的时候，本地进行fetch后，本地还是一次commit，
+需要进行显示的merge才会更改本地。
+
+**pull:**会查找当前分支所跟踪的服务器与分支， 从服务器上抓取数据然后尝试合并入那个远程分支，
+相当于fetch+merge。
 
 ### git remote show
 
@@ -209,6 +219,10 @@ HEAD是一个特殊指针，指向当前所在分支
 git log --oneline:会显示分支指向那个commit，和HEAD指向（包括remote和local的分支）
 
 git checkout -b branch-name:创建新分支，并切换HEAD到这个新分支上
+git checkout -b <local-branch> origin/branch-name:创建新分支并与远程分支联系
+git it checkout -b branch-name=it checkout -b branch-name origin/branch-name
+
+git branch -u origin-branch:当前local分支重新创建与远程分支的联系
 
 ### 分支切换
 
@@ -236,7 +250,7 @@ git merge hotfix,此时只有iss22的parent为v1.0
 - 此时，master和iss22有共同祖先v1.0，git回基于这个共同祖先和这两个分支的最后的commit快照进行三合一
 - iss22完成，git branch -d iss22
 
-#### 合并冲突
+### 合并冲突
 
 两个分支对一个文件进行了操作，将产生合并冲突
 
@@ -250,14 +264,37 @@ git branch:显示所有分支
 git branch -v :查看每一个分支的最后commit
 git branch --merged : 显示已合并到当前分支的分支,这里显示的就可以删除掉了
 git branch --no-merged :当前分支为合并的分支
+git branch -vv:本地分支与远程分支的联系
 
-### 分支开发工作流
+### 远程分支
 
+git ls-remote <short-name>:显示远程列表
+git remote show <short-name>:获取更多远程分支信息
 
+- git push <short-name> <branch-name>
+- 推送分支到remote(short-name)
+- 如果remote没有branch-name这个分支，会在remote创建这个分支
+- 等同于git push <short-name> <local-branch-name>:<remote-branch-name>
 
+git push origin --delete branch-name:删除remote分支
 
+### 变基-rebase
 
+背景介绍：从主分支签出一个开发分支，但是主分支进行了更新，这时可以使用merge进行三合一，
+也可以使用rebase将分支上的变更在主分支的最新commit进行应用。
 
+git rebase master:将当前分支做出的commit变基到master分支最新的commit上
+变基之后，就相当于开发分支签出时master是最新的。
+
+开发分支完成之后，在checkout到主分支，进行git merge feature将开发分支合并到主分支
+
+- git rebase --onto master sever client
+- master为主分支，server从master签出的，client从server签出的
+- 想将client上的commoit直接合并到master同时保证sever上的commit不会合并到master
+- 将client的commit进行rebase到master最新的commit上
+- git checkout master + git merge client完成
+
+git rebase master server :将server变基到master最新的commit上，不需要checkout
 
 
 
